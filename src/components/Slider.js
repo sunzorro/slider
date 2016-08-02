@@ -29,6 +29,19 @@ class Slider extends React.Component{
   pausePlay(){
     clearInterval(this.interval)
   }
+  scroll(option){
+    this.pausePlay();
+    let x = this.state.nowLocal + option
+    if(x < 0){
+      x = 2
+    }
+    if(x > 2){
+      x = 0
+    }
+    this.setState({
+      nowLocal:x
+    })
+  }
   render(){
     let styles={
       ul:{
@@ -45,6 +58,14 @@ class Slider extends React.Component{
           <li><img src={Img2} /></li>
           <li><img src={Img3} /></li>
         </ul>
+        <div>
+          <span className='arrow left'
+            onClick={this.scroll.bind(this,-1)}
+            >&lt;</span>
+          <span className='arrow right'
+            onClick={this.scroll.bind(this,1)}
+            >&gt;</span>
+        </div>
       </div>
     )
   }
